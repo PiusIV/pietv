@@ -21,11 +21,16 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [error, setError] = useState("");
+  const [isSearchFocused, setIsSearchFocuced] = useState(null);
   // const tempQ = "interstellar";
 
   function handleSelectMovie(id) {
     setSelectedId(id);
   }
+
+  const handleCloseMovie = () => {
+    setSelectedId(null);
+  };
 
   useEffect(() => {
     //to clear search requests until its the last, also make it faster
@@ -74,9 +79,13 @@ function App() {
     <div className="bg-gray-950 min-h-screen h-full max-w-screen text-white gap-2">
       <Navbar>
         <Logo />
-        <Search query={query} setQuery={setQuery} />
+        <Search
+          query={query}
+          setQuery={setQuery}
+          shouldFocus={isSearchFocused}
+        />
       </Navbar>
-      <HeroSection />
+      <HeroSection onSearchClicked={() => setIsSearchFocuced(true)} />
       <MainContent>
         <Box>
           {!isLoading && !error && (
@@ -86,7 +95,14 @@ function App() {
           {error && <ErrorMessage message={error} />}
         </Box>
         <Box>
-          {selectedId ? <MovieDeets selectedId={selectedId} /> : <p>...</p>}
+          {selectedId ? (
+            <MovieDeets
+              selectedId={selectedId}
+              onCloseMovie={handleCloseMovie}
+            />
+          ) : (
+            <p>...</p>
+          )}
         </Box>
       </MainContent>
     </div>

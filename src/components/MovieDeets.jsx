@@ -3,7 +3,7 @@ import Loader from "./Loader";
 
 const API_KEY = "ca2e5ed9";
 
-function MovieDeets({ selectedId }) {
+function MovieDeets({ selectedId, onCloseMovie }) {
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -49,28 +49,33 @@ function MovieDeets({ selectedId }) {
       ) : (
         <>
           <header className="w-full h-[20rem] grid grid-cols-2 px-2">
-            <button className="text-lg border-1 rounded-full z-20 bg-grey-600 h-9 items-center w-9">
+            <button
+              onClick={onCloseMovie}
+              className="text-lg border-1 rounded-full z-20 bg-grey-600 h-9 items-center w-9"
+            >
               &larr;
             </button>
-            <div className="w-full h-6 mx-auto">
+            <div className="w-48 h-32 mx-auto">
               <img src={poster} alt={`movie ${poster}`} />
             </div>
           </header>
-          <div className="px-3 grid gap-3 mb-4">
-            <h2 className="uppercase font-bold">{title}</h2>
+          <div className="px-3 grid gap-3 mb-4 text-center">
+            <h2 className="uppercase font-bold text-3xl text-center">
+              {title}
+            </h2>
             <p>
               {released} &bull; {runtime}
             </p>
             <p>{genre}</p>
             <p>
-              <span>star</span>
+              <span>⭐</span>
               {imdbRating} IMDB Rating
             </p>
           </div>
-          <section className="px-3 grid gap-6">
-            <p className="font-serif">
+          <section className="px-3 grid gap-12 pb-8">
+            <p className="font-serif text-center">
               <em>{plot}</em>
-              <p className="font-mono">Starring: {actors}</p>
+              <p className="font-mono pb-5">Starring: {actors}</p>
               <p>
                 Directed by: <strong>{director}</strong>
               </p>

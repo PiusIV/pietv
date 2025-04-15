@@ -1,4 +1,4 @@
-function HeroSection() {
+function HeroSection({ onSearchClicked }) {
   return (
     <section className="container mx-auto px-4 capitalize relative top-18 md:top-4 h-[780px] grid grid-cols-1 gap-6 md:grid-cols-2 md:justify-center md:gap-2 md:items-center md:px-6">
       {/* Main Content */}
@@ -10,9 +10,16 @@ function HeroSection() {
           with PieTV+, you can track/search your favourite TV shows and watch
           thrilling movies, so you never lose track of your Tv shows again 🍿
         </p>
-        <div className="border border-amber-300 p-2 w-26 rounded-3xl mx-auto hover:bg-amber-500 transition-colors duration-300">
-          <button className="cursor-pointer hover:text-emerald-900 rounded-xl font-medium text-center">
-            search now
+        <div
+          id="search-bar"
+          className="border border-amber-300 p-2 w-26 rounded-3xl mx-auto hover:bg-amber-500 transition-colors duration-300 hover:cursor-pointer"
+        >
+          <button
+            id="search-bar"
+            className="hover:cursor-pointer"
+            onClick={onSearchClicked}
+          >
+            Search Now
           </button>
         </div>
       </div>

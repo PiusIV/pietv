@@ -2,7 +2,7 @@ function Navbar({ children }) {
   return (
     <header className="flex h-20 w-full justify-between p-6 top-0 mb-8 fixed z-50 bg-inherit">
       {children}
-      <div className="text-2xl">
+      <div className="text-2xl hidden md:block">
         <button className="hover:cursor-pointer">
           <svg
             className={`h-6 w-6 `}
