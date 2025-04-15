@@ -1,8 +1,8 @@
 function Navbar({ children }) {
   return (
-    <header className="flex h-20 w-full justify-between p-6 top-0 mb-8 fixed z-50 bg-inherit">
+    <header className="flex items-center w-full max-w-screen-xl mx-auto h-20 justify-between p-6 top-0 mb-8 fixed z-50 bg-inherit">
       {children}
-      <div className="text-2xl hidden md:block">
+      <div className="text-2xl">
         <button className="hover:cursor-pointer">
           <svg
             className={`h-6 w-6 `}

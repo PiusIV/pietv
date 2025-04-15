@@ -76,7 +76,7 @@ function App() {
   }, [query]);
 
   return (
-    <div className="bg-gray-950 min-h-screen h-full max-w-screen text-white gap-2">
+    <div className="bg-gray-950 min-h-screen h-full max-w-screen text-white gap-2 overflow-hidden">
       <Navbar>
         <Logo />
         <Search
