@@ -27,7 +27,6 @@ function MovieDeets({ selectedId, onCloseMovie }) {
       );
       const data = await res.json();
       setMovie(data);
-      console.log(data);
       setIsLoading(false);
     }
     getMovieDetails();
@@ -43,44 +42,92 @@ function MovieDeets({ selectedId, onCloseMovie }) {
   }, [title]);
 
   return (
-    <div className="w-auto h-screen p-0 flex flex-col">
+    <div className="h-screen overflow-y-auto bg-gradient-to-b from-gray-900 to-gray-800 text-gray-100">
       {isLoading ? (
         <Loader />
       ) : (
         <>
-          <header className="w-full h-[20rem] grid grid-cols-2 px-2">
+          {/* Header with backdrop image */}
+          <header className="relative h-64 md:h-80 lg:h-96 w-full overflow-hidden">
+            {/* Backdrop image */}
+            <div className="absolute inset-0 bg-black/30 z-10" />
+            <img
+              src={poster}
+              alt={`${title} backdrop`}
+              className="w-full h-full object-cover"
+            />
+
+            {/* Back button */}
             <button
               onClick={onCloseMovie}
-              className="text-lg border-1 rounded-full z-20 bg-grey-600 h-9 items-center w-9"
+              className="absolute top-4 left-4 z-20 bg-black/70 hover:bg-black/90 text-white rounded-full p-2 transition-all duration-200"
             >
-              &larr;
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+              </svg>
             </button>
-            <div className="w-48 h-32 mx-auto">
-              <img src={poster} alt={`movie ${poster}`} />
-            </div>
           </header>
-          <div className="px-3 grid gap-3 mb-4 text-center">
-            <h2 className="uppercase font-bold text-3xl text-center">
-              {title}
-            </h2>
-            <p>
-              {released} &bull; {runtime}
-            </p>
-            <p>{genre}</p>
-            <p>
-              <span>⭐</span>
-              {imdbRating} IMDB Rating
-            </p>
+
+          {/* Movie content */}
+          <div className="max-w-4xl mx-auto px-4 py-6">
+            {/* Movie poster floating above content */}
+            <div className="relative -mt-16 mb-6 mx-auto w-32 h-48 border-4 border-gray-800 rounded-lg overflow-hidden shadow-xl">
+              <img
+                src={poster}
+                alt={`${title} poster`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Movie title and basic info */}
+            <div className="text-center mb-6">
+              <h1 className="text-3xl md:text-4xl font-bold mb-2">{title}</h1>
+              <div className="flex justify-center items-center gap-4 text-gray-300 text-sm mb-3">
+                <span>{released}</span>
+                <span>•</span>
+                <span>{runtime}</span>
+                <span>•</span>
+                <span>{genre}</span>
+              </div>
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-yellow-400">⭐</span>
+                <span className="font-semibold">{imdbRating} IMDb Rating</span>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="border-t border-gray-700 my-6" />
+
+            {/* Plot and details */}
+            <div className="space-y-6">
+              <div>
+                <h2 className="text-xl font-semibold mb-2">Plot</h2>
+                <p className="text-gray-300 leading-relaxed">{plot}</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h2 className="text-xl font-semibold mb-2">Cast</h2>
+                  <p className="text-gray-300">{actors}</p>
+                </div>
+                <div>
+                  <h2 className="text-xl font-semibold mb-2">Director</h2>
+                  <p className="text-gray-300">{director}</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <section className="px-3 grid gap-12 pb-8">
-            <p className="font-serif text-center">
-              <em>{plot}</em>
-              <p className="font-mono pb-5">Starring: {actors}</p>
-              <p>
-                Directed by: <strong>{director}</strong>
-              </p>
-            </p>
-          </section>
         </>
       )}
     </div>
