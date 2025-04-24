@@ -104,7 +104,7 @@ function App() {
               onCloseMovie={handleCloseMovie}
             />
           ) : (
-            <p>Oopa, No movie searched!</p>
+            <p className="mb-5 font-bold">Oops, No movie searched!</p>
           )}
         </Box>
       </MainContent>
