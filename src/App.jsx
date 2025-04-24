@@ -9,6 +9,7 @@ import MovieList from "./components/MovieList";
 import Loader from "./components/Loader";
 import ErrorMessage from "./components/ErrorMessage";
 import MovieDeets from "./components/MovieDeets";
+import Footer from "./components/Footer";
 // import reactLogo from "./assets/react.svg";
 // import viteLogo from "/vite.svg";
 // import "./App.css";
@@ -105,6 +106,7 @@ function App() {
           )}
         </Box>
       </MainContent>
+      <Footer />
     </div>
   );
 }
