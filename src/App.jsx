@@ -26,7 +26,9 @@ function App() {
   // const tempQ = "interstellar";
 
   function handleSelectMovie(id) {
-    setSelectedId(id);
+    //better way to conditionally select
+    setSelectedId((selectedId) => (id === selectedId ? null : id));
+    // setSelectedId(id)
   }
 
   const handleCloseMovie = () => {
@@ -102,7 +104,7 @@ function App() {
               onCloseMovie={handleCloseMovie}
             />
           ) : (
-            <p>...</p>
+            <p>Oopa, No movie searched!</p>
           )}
         </Box>
       </MainContent>
